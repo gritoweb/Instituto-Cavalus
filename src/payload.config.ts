@@ -7,10 +7,17 @@ import { fileURLToPath } from 'url'
 import { CloudflareContext, getCloudflareContext } from '@opennextjs/cloudflare'
 import { GetPlatformProxyOptions } from 'wrangler'
 import { r2Storage } from '@payloadcms/storage-r2'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 
+import { buildFrontendUrl, generatePreviewPath } from './utilities/generatePreviewPath'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import migrations from './db/migrations'
+import { Categories } from './collections/Categories'
+import { Articles } from './collections/Articles'
+import { Courses } from './collections/Courses'
+import { Pages } from './collections/Pages'
+import { Header } from './globals/Header/config'
+import { Footer } from './globals/Footer/config'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -50,8 +57,22 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      collections: ['pages', 'courses'],
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 375, height: 667 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+      url: ({ data, collectionConfig }) =>
+        generatePreviewPath({
+          slug: typeof data?.slug === 'string' ? data.slug : '',
+          collection: collectionConfig?.slug ?? 'pages',
+        }),
+    },
   },
-  collections: [Users, Media],
+  collections: [Pages, Courses, Articles, Categories, Media, Users],
+  globals: [Header, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -65,6 +86,17 @@ export default buildConfig({
     r2Storage({
       bucket: cloudflare.env.R2,
       collections: { media: true },
+    }),
+    seoPlugin({
+      collections: ['pages', 'courses', 'articles'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }: { doc: any }) =>
+        [doc?.title, 'Instituto Cavalus'].filter(Boolean).join(' — '),
+      generateDescription: ({ doc }: { doc: any }) =>
+        doc?.excerpt ?? doc?.description ?? doc?.lede ?? '',
+      generateImage: ({ doc }: { doc: any }) => doc?.cover ?? doc?.featuredImage,
+      generateURL: ({ doc, collectionSlug }: { doc: any; collectionSlug: string }) =>
+        buildFrontendUrl(collectionSlug, doc?.slug),
     }),
   ],
 })

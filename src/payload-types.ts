@@ -67,8 +67,12 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
+    pages: Page;
+    courses: Course;
+    articles: Article;
+    categories: Category;
     media: Media;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,8 +80,12 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
+    courses: CoursesSelect<false> | CoursesSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -87,8 +95,14 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    header: Header;
+    footer: Footer;
+  };
+  globalsSelect: {
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -119,6 +133,383 @@ export interface UserAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  /**
+   * Use "home" para a página inicial. Gerado a partir do título se vazio.
+   */
+  slug?: string | null;
+  layout?:
+    | (
+        | {
+            eyebrow?: string | null;
+            headlineBefore: string;
+            headlineEmphasis?: string | null;
+            headlineAfter?: string | null;
+            lede?: string | null;
+            actions?:
+              | {
+                  label: string;
+                  href: string;
+                  variant?: ('primary' | 'ghost') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            showArt?: boolean | null;
+            floatingCards?:
+              | {
+                  icon: 'book' | 'users' | 'share-2' | 'award' | 'smartphone';
+                  position: 'top' | 'mid' | 'bottom';
+                  title: string;
+                  subtitle: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'heroEditorial';
+          }
+        | {
+            items?:
+              | {
+                  prefix?: string | null;
+                  value: string;
+                  caption: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statsStrip';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            lede?: string | null;
+            features?:
+              | {
+                  icon:
+                    | 'award'
+                    | 'book'
+                    | 'briefcase'
+                    | 'heart'
+                    | 'landmark'
+                    | 'smartphone'
+                    | 'sparkles'
+                    | 'star'
+                    | 'stethoscope'
+                    | 'target'
+                    | 'trophy'
+                    | 'users';
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featureGrid';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            linkLabel?: string | null;
+            linkHref?: string | null;
+            source?: ('featured' | 'latest' | 'manual') | null;
+            courses?: (number | Course)[] | null;
+            limit?: number | null;
+            alt?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'featuredCourses';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            linkBase?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'categoriesExplore';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            linkLabel?: string | null;
+            linkHref?: string | null;
+            limit?: number | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'latestArticles';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            items?:
+              | {
+                  question: string;
+                  answer: string;
+                  open?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'faq';
+          }
+        | {
+            eyebrow?: string | null;
+            title: string;
+            text?: string | null;
+            actions?:
+              | {
+                  label: string;
+                  href: string;
+                  variant?: ('white' | 'outline-white') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ctaBand';
+          }
+        | {
+            label?: string | null;
+            searchPlaceholder?: string | null;
+            articlesLimit?: number | null;
+            emptyTitle?: string | null;
+            emptyText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'articlesArchive';
+          }
+        | {
+            label?: string | null;
+            searchPlaceholder?: string | null;
+            coursesLimit?: number | null;
+            emptyTitle?: string | null;
+            emptyText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'coursesCatalog';
+          }
+        | {
+            /**
+             * Todo o conteúdo é puxado do curso selecionado.
+             */
+            course: number | Course;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'courseDetail';
+          }
+      )[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses".
+ */
+export interface Course {
+  id: number;
+  title: string;
+  description: string;
+  categories: (number | Category)[];
+  priceOld?: string | null;
+  priceNow: string;
+  /**
+   * Sem imagem, usa o gradiente abaixo.
+   */
+  cover?: (number | null) | Media;
+  coverColorFrom?: string | null;
+  coverColorTo?: string | null;
+  lede?: string | null;
+  featuredImage?: (number | null) | Media;
+  featuredCaption?: string | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  whatYouLearn?:
+    | {
+        strong?: string | null;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  forWho?:
+    | {
+        strong?: string | null;
+        text?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  modules?:
+    | {
+        title: string;
+        description?: string | null;
+        duration?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  bonus?: {
+    title?: string | null;
+    text?: string | null;
+  };
+  quote?: {
+    text?: string | null;
+    cite?: string | null;
+  };
+  instructor?: {
+    initials?: string | null;
+    name?: string | null;
+    role?: string | null;
+    bio?: string | null;
+  };
+  priceInstallment?: string | null;
+  details?:
+    | {
+        title: string;
+        sub?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  ctaLabel?: string | null;
+  ctaUrl?: string | null;
+  /**
+   * Gerado a partir do título se vazio.
+   */
+  slug?: string | null;
+  featured?: boolean | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  name: string;
+  /**
+   * Gerado automaticamente a partir do nome se deixado em branco.
+   */
+  slug?: string | null;
+  /**
+   * Usado nos cards de "Explore por área".
+   */
+  icon?:
+    | (
+        | 'award'
+        | 'book'
+        | 'briefcase'
+        | 'heart'
+        | 'landmark'
+        | 'smartphone'
+        | 'sparkles'
+        | 'star'
+        | 'stethoscope'
+        | 'target'
+        | 'trophy'
+        | 'users'
+      )
+    | null;
+  /**
+   * HEX do gradiente da capa quando o artigo não tem imagem.
+   */
+  coverColorFrom?: string | null;
+  coverColorTo?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  /**
+   * Texto curto exibido no card (2 a 3 linhas).
+   */
+  excerpt: string;
+  /**
+   * Opcional. Sem imagem, o card usa o gradiente da categoria.
+   */
+  cover?: (number | null) | Media;
+  category: number | Category;
+  /**
+   * Gerado automaticamente a partir do título se deixado em branco.
+   */
+  slug?: string | null;
+  publishedAt?: string | null;
+  /**
+   * Minutos estimados de leitura.
+   */
+  readingTime?: number | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -141,23 +532,6 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -184,12 +558,28 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'courses';
+        value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -235,6 +625,318 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        heroEditorial?:
+          | T
+          | {
+              eyebrow?: T;
+              headlineBefore?: T;
+              headlineEmphasis?: T;
+              headlineAfter?: T;
+              lede?: T;
+              actions?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    variant?: T;
+                    id?: T;
+                  };
+              showArt?: T;
+              floatingCards?:
+                | T
+                | {
+                    icon?: T;
+                    position?: T;
+                    title?: T;
+                    subtitle?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        statsStrip?:
+          | T
+          | {
+              items?:
+                | T
+                | {
+                    prefix?: T;
+                    value?: T;
+                    caption?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featureGrid?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              lede?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        featuredCourses?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              linkLabel?: T;
+              linkHref?: T;
+              source?: T;
+              courses?: T;
+              limit?: T;
+              alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+        categoriesExplore?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              linkBase?: T;
+              id?: T;
+              blockName?: T;
+            };
+        latestArticles?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              linkLabel?: T;
+              linkHref?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faq?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              items?:
+                | T
+                | {
+                    question?: T;
+                    answer?: T;
+                    open?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        ctaBand?:
+          | T
+          | {
+              eyebrow?: T;
+              title?: T;
+              text?: T;
+              actions?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    variant?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        articlesArchive?:
+          | T
+          | {
+              label?: T;
+              searchPlaceholder?: T;
+              articlesLimit?: T;
+              emptyTitle?: T;
+              emptyText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        coursesCatalog?:
+          | T
+          | {
+              label?: T;
+              searchPlaceholder?: T;
+              coursesLimit?: T;
+              emptyTitle?: T;
+              emptyText?: T;
+              id?: T;
+              blockName?: T;
+            };
+        courseDetail?:
+          | T
+          | {
+              course?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "courses_select".
+ */
+export interface CoursesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  categories?: T;
+  priceOld?: T;
+  priceNow?: T;
+  cover?: T;
+  coverColorFrom?: T;
+  coverColorTo?: T;
+  lede?: T;
+  featuredImage?: T;
+  featuredCaption?: T;
+  body?: T;
+  whatYouLearn?:
+    | T
+    | {
+        strong?: T;
+        text?: T;
+        id?: T;
+      };
+  forWho?:
+    | T
+    | {
+        strong?: T;
+        text?: T;
+        id?: T;
+      };
+  modules?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        duration?: T;
+        id?: T;
+      };
+  bonus?:
+    | T
+    | {
+        title?: T;
+        text?: T;
+      };
+  quote?:
+    | T
+    | {
+        text?: T;
+        cite?: T;
+      };
+  instructor?:
+    | T
+    | {
+        initials?: T;
+        name?: T;
+        role?: T;
+        bio?: T;
+      };
+  priceInstallment?: T;
+  details?:
+    | T
+    | {
+        title?: T;
+        sub?: T;
+        id?: T;
+      };
+  ctaLabel?: T;
+  ctaUrl?: T;
+  slug?: T;
+  featured?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  excerpt?: T;
+  cover?: T;
+  category?: T;
+  slug?: T;
+  publishedAt?: T;
+  readingTime?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  icon?: T;
+  coverColorFrom?: T;
+  coverColorTo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -254,22 +956,6 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
- */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -310,6 +996,114 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  navItems?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  cta?: {
+    label?: string | null;
+    href?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  description?: string | null;
+  navTitle?: string | null;
+  navLinks?:
+    | {
+        label: string;
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  contact?: {
+    email?: string | null;
+    phone?: string | null;
+    location?: string | null;
+  };
+  socials?:
+    | {
+        platform: 'instagram' | 'youtube' | 'facebook';
+        href: string;
+        id?: string | null;
+      }[]
+    | null;
+  copyright?: string | null;
+  note?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  navItems?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  cta?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  description?: T;
+  navTitle?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        href?: T;
+        id?: T;
+      };
+  contact?:
+    | T
+    | {
+        email?: T;
+        phone?: T;
+        location?: T;
+      };
+  socials?:
+    | T
+    | {
+        platform?: T;
+        href?: T;
+        id?: T;
+      };
+  copyright?: T;
+  note?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
