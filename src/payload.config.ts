@@ -95,8 +95,8 @@ export default buildConfig({
       generateDescription: ({ doc }: { doc: any }) =>
         doc?.excerpt ?? doc?.description ?? doc?.lede ?? '',
       generateImage: ({ doc }: { doc: any }) => doc?.cover ?? doc?.featuredImage,
-      generateURL: ({ doc, collectionSlug }: { doc: any; collectionSlug: string }) =>
-        buildFrontendUrl(collectionSlug, doc?.slug),
+      generateURL: ({ doc, collectionSlug }: { doc: any; collectionSlug?: string }) =>
+        buildFrontendUrl(collectionSlug ?? 'pages', doc?.slug),
     }),
   ],
 })

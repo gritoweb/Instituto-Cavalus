@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 
-type MediaLike = { url?: string | null; alt?: string | null } | string | null | undefined
-
-function imageUrl(image: MediaLike): string | undefined {
-  if (!image || typeof image === 'string') return undefined
-  if (!image.url) return undefined
+/** Resolve a URL de uma imagem (upload do Payload) quando populada; ignora ids não populados. */
+function imageUrl(image: unknown): string | undefined {
+  if (!image || typeof image !== 'object') return undefined
+  const url = (image as { url?: string | null }).url
+  if (!url) return undefined
   const base = process.env.NEXT_PUBLIC_SERVER_URL ?? ''
-  return image.url.startsWith('http') ? image.url : `${base}${image.url}`
+  return url.startsWith('http') ? url : `${base}${url}`
 }
 
 type DocWithMeta = {
@@ -14,10 +14,10 @@ type DocWithMeta = {
   meta?: {
     title?: string | null
     description?: string | null
-    image?: MediaLike
+    image?: unknown
   } | null
-  cover?: MediaLike
-  featuredImage?: MediaLike
+  cover?: unknown
+  featuredImage?: unknown
 } | null
 
 /** Converte os campos de SEO de um doc em Metadata do Next. */
