@@ -20,7 +20,7 @@ export function CtaBandBlock({ eyebrow, title, text, actions }: CtaBandProps) {
         {eyebrow ? <span className="eyebrow !text-white/85">{eyebrow}</span> : null}
         <h2 className="mx-auto mt-3 max-w-[720px] !text-white">{title}</h2>
         {text ? (
-          <p className="mx-auto mb-8 mt-4 max-w-[560px] text-[17px] text-white/90">{text}</p>
+          <p className="mx-auto mb-8 mt-4 max-w-[560px] text-base text-white/90">{text}</p>
         ) : null}
         {actions?.length ? (
           <div className="inline-flex flex-wrap justify-center gap-3">

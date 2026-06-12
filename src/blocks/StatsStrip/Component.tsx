@@ -92,11 +92,11 @@ export function StatsStripBlock({ items }: StatsStripProps) {
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
           {items.map((item, i) => (
             <div key={item.id ?? i} className="flex flex-col gap-1">
-              <span className="font-display text-[clamp(28px,3vw,36px)] font-bold leading-none tracking-[-0.015em] tabular-nums text-ink-900">
+              <span className="font-display text-3xl font-bold leading-none tracking-tight tabular-nums text-ink-900 sm:text-4xl">
                 {item.prefix ? <span className="text-brand-green">{item.prefix}</span> : null}
                 <Counter value={item.value} />
               </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-ink-500">
+              <span className="text-xs font-semibold uppercase tracking-wider text-ink-500">
                 {item.caption}
               </span>
             </div>

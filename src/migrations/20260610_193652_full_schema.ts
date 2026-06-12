@@ -204,7 +204,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
-  	\`label\` text DEFAULT 'Filtrar por categoria',
+  	\`label\` text DEFAULT 'Filtros',
   	\`search_placeholder\` text DEFAULT 'Buscar artigos por título ou tema…',
   	\`articles_limit\` numeric DEFAULT 12,
   	\`empty_title\` text DEFAULT 'Nenhum artigo encontrado',
@@ -221,7 +221,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` text PRIMARY KEY NOT NULL,
-  	\`label\` text DEFAULT 'Filtrar por categoria',
+  	\`label\` text DEFAULT 'Filtros
   	\`search_placeholder\` text DEFAULT 'Buscar curso por nome ou tema…',
   	\`courses_limit\` numeric DEFAULT 100,
   	\`empty_title\` text DEFAULT 'Nenhum curso encontrado',
@@ -492,7 +492,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`label\` text DEFAULT 'Filtrar por categoria',
+  	\`label\` text DEFAULT 'Filtros
   	\`search_placeholder\` text DEFAULT 'Buscar artigos por título ou tema…',
   	\`articles_limit\` numeric DEFAULT 12,
   	\`empty_title\` text DEFAULT 'Nenhum artigo encontrado',
@@ -510,7 +510,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	\`_parent_id\` integer NOT NULL,
   	\`_path\` text NOT NULL,
   	\`id\` integer PRIMARY KEY NOT NULL,
-  	\`label\` text DEFAULT 'Filtrar por categoria',
+  	\`label\` text DEFAULT 'Filtros
   	\`search_placeholder\` text DEFAULT 'Buscar curso por nome ou tema…',
   	\`courses_limit\` numeric DEFAULT 100,
   	\`empty_title\` text DEFAULT 'Nenhum curso encontrado',

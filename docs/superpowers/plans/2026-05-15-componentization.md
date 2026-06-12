@@ -1422,7 +1422,7 @@ export function TagFilter({ filters, activeFilter, onFilterChange }: TagFilterPr
     <div
       className="pb-7 mb-7 border-b border-dashed border-line"
       role="group"
-      aria-label="Filtrar por categoria"
+      aria-label="Filtros"
     >
       <div className="flex flex-wrap gap-2.5 items-center">
         <span className="font-body font-bold text-xs uppercase tracking-[0.12em] text-mute mr-2">
@@ -1871,7 +1871,7 @@ export function TagFilter({ filters, activeFilter, onFilterChange }: TagFilterPr
     <div
       className="flex items-center gap-2 flex-wrap"
       role="group"
-      aria-label="Filtrar por categoria"
+      aria-label="Filtros"
     >
       {[{ label: 'Todos', value: 'all' }, ...filters].map((filter) => (
         <button

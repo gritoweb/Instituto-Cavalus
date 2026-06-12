@@ -64,16 +64,14 @@ export function ArticleCard({ article, hidden }: ArticleCardProps) {
           <Chip>{categoryName}</Chip>
         </div>
 
-        <h3 className="m-0 font-display text-[18px] font-semibold leading-[1.3] text-ink-900">
-          {title}
-        </h3>
+        <h3 className="text-lg leading-snug">{title}</h3>
 
-        <p className="m-0 text-sm leading-[1.55] text-ink-500">{excerpt}</p>
+        <p className="m-0 text-sm leading-normal text-ink-500">{excerpt}</p>
 
         <hr className="mt-1 border-0 border-t border-ink-300/30" />
 
         <div className="mt-auto flex min-w-0 flex-col items-start gap-3.5">
-          <div className="inline-flex min-w-0 shrink items-center gap-2.5 text-[13px] font-medium text-ink-500">
+          <div className="inline-flex min-w-0 shrink items-center gap-2.5 text-sm font-medium text-ink-500">
             <span>{dateLabel}</span>
             <span aria-hidden className="h-[3px] w-[3px] shrink-0 rounded-full bg-ink-300" />
             <span>{readingLabel}</span>
@@ -81,7 +79,7 @@ export function ArticleCard({ article, hidden }: ArticleCardProps) {
 
           <a
             href={href}
-            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-md)] bg-brand-green px-3.5 py-[9px] text-[13px] font-semibold text-white no-underline transition-all duration-200 ease-in-out hover:bg-brand-dark hover:text-white"
+            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-md)] bg-brand-green px-3.5 py-[9px] text-sm font-semibold text-white no-underline transition-all duration-200 ease-in-out hover:bg-brand-dark hover:text-white"
           >
             Leia mais
             <Icon name="arrow-right" size={13} strokeWidth={2.5} />

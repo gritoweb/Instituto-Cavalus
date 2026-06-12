@@ -12,7 +12,7 @@ export function Chip({ children, className }: ChipProps) {
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-[var(--radius-pill)] bg-brand-tint px-2.5 py-[3px] text-[10px] font-semibold uppercase leading-[1.4] tracking-[0.06em] text-brand-dark',
+        'inline-flex items-center rounded-[var(--radius-pill)] bg-brand-tint px-2.5 py-[3px] text-xs font-semibold uppercase tracking-wider text-brand-dark',
         className,
       )}
     >

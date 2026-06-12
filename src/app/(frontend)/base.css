@@ -170,6 +170,16 @@
   .muted {
     color: var(--color-ink-500);
   }
+
+  /* Número gigante de páginas de erro (404, 500). */
+  .error-code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(104px, 19vw, 210px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--color-brand-dark);
+  }
 }
 
 /* Acessibilidade: respeita preferência por menos movimento */

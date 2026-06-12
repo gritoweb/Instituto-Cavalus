@@ -19,9 +19,9 @@ export function CategoryCard({ icon, name, count, href }: CategoryCardProps) {
       <div className="grid h-12 w-12 place-items-center rounded-[var(--radius-md)] bg-brand-tint text-brand-dark transition-all duration-200 ease-in-out group-hover:bg-brand-green group-hover:text-white">
         <Icon name={icon} size={22} strokeWidth={1.8} />
       </div>
-      <div className="font-display text-[18px] font-semibold leading-[1.25] text-ink-900">{name}</div>
+      <div className="font-display text-lg font-semibold leading-tight text-ink-900">{name}</div>
       {count ? (
-        <div className="mt-auto text-[13px] font-medium tracking-[0.02em] text-ink-500">{count}</div>
+        <div className="mt-auto text-sm font-medium tracking-wide text-ink-500">{count}</div>
       ) : null}
     </a>
   )

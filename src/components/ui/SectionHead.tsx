@@ -42,12 +42,17 @@ export function SectionHead({
         <a
           href={linkHref}
           className={cn(
-            'inline-flex items-center gap-1.5 whitespace-nowrap text-[15px] font-semibold transition-[gap] duration-200 hover:gap-2.5',
+            'group inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-semibold',
             dark ? 'text-brand-tint hover:text-white' : 'text-brand-green',
           )}
         >
           {linkLabel}
-          <Icon name="arrow-right" size={16} strokeWidth={2} />
+          <Icon
+            name="arrow-right"
+            size={16}
+            strokeWidth={2}
+            className="transition-transform duration-200 group-hover:translate-x-1"
+          />
         </a>
       ) : null}
     </div>

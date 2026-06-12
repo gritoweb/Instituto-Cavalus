@@ -32,14 +32,14 @@ export function Footer({
           <div>
             <Brand href="/" onDark />
             {description ? (
-              <p className="mt-4 max-w-[36ch] text-sm leading-[1.6]">{description}</p>
+              <p className="mt-4 max-w-[36ch] text-sm leading-relaxed">{description}</p>
             ) : null}
             {socials?.length ? <SocialLinks links={socials} /> : null}
           </div>
 
           {/* Navegação */}
           <div>
-            <h5 className="m-0 mb-5 font-body text-[13px] font-semibold uppercase tracking-[0.08em] text-white">
+            <h5 className="m-0 mb-5 font-body text-sm font-semibold uppercase tracking-wider text-white">
               {navTitle ?? 'Navegação'}
             </h5>
             <ul className="m-0 flex list-none flex-col gap-3 p-0">
@@ -55,7 +55,7 @@ export function Footer({
 
           {/* Contato */}
           <div>
-            <h5 className="m-0 mb-5 font-body text-[13px] font-semibold uppercase tracking-[0.08em] text-white">
+            <h5 className="m-0 mb-5 font-body text-sm font-semibold uppercase tracking-wider text-white">
               Contato
             </h5>
             <div className="flex flex-col gap-3 text-sm">
@@ -84,7 +84,7 @@ export function Footer({
           </div>
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-6 text-[13px] text-white/50">
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.08] pt-6 text-sm text-white/50">
           <span>{copyright ?? '© 2026 Instituto Cavalus. Todos os direitos reservados.'}</span>
           <span>{note ?? 'Parte do Portal Cavalus'}</span>
         </div>

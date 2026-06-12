@@ -41,10 +41,10 @@ export function FloatingInfoCard({ icon, title, subtitle, position }: FloatingIn
         <Icon name={icon} size={20} strokeWidth={1.8} />
       </div>
       <div>
-        <div className="font-display text-sm font-semibold leading-[1.2] text-ink-900 max-sm:text-[13px]">
+        <div className="font-display text-sm font-semibold leading-tight text-ink-900">
           {title}
         </div>
-        <div className="mt-0.5 text-xs font-medium text-ink-500 max-sm:text-[11px]">{subtitle}</div>
+        <div className="mt-0.5 text-xs font-medium text-ink-500">{subtitle}</div>
       </div>
     </div>
   )

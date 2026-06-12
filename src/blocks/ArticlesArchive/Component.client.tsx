@@ -73,7 +73,7 @@ export function ArticlesArchiveClient({
       {/* Filterbar */}
       <div className="mb-10 rounded-[var(--radius-lg)] border border-ink-300/25 bg-white p-6 shadow-sm md:px-8 md:py-7">
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-4">
-          <span className="inline-flex items-center gap-2 font-display text-[15px] font-semibold text-ink-900">
+          <span className="inline-flex items-center gap-2 font-display text-sm font-semibold text-ink-900">
             <Icon name="sliders" size={18} strokeWidth={1.8} className="text-brand-dark" />
             {label}
           </span>
@@ -122,7 +122,7 @@ export function ArticlesArchiveClient({
             <Icon name="search" size={28} strokeWidth={1.8} />
           </div>
           <h3 className="mb-2">{emptyTitle}</h3>
-          <p className="mx-auto mb-6 max-w-[42ch] text-[15px] text-ink-500">{emptyMessage}</p>
+          <p className="mx-auto mb-6 max-w-[42ch] text-sm text-ink-500">{emptyMessage}</p>
           <Button variant="ghost" onClick={resetFilters}>
             Ver todos os artigos
           </Button>

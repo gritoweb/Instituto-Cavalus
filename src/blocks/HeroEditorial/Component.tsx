@@ -41,7 +41,7 @@ export function HeroEditorialBlock(props: HeroEditorialProps) {
               </span>
             ) : null}
 
-            <h1 className="m-0 mb-6 max-w-[16ch] font-display text-[clamp(40px,5.4vw,64px)] font-bold leading-[1.04] tracking-[-0.02em] text-ink-900">
+            <h1 className="display mb-6 max-w-[16ch]">
               {headlineBefore}
               {headlineEmphasis ? (
                 <em className="italic font-medium text-brand-dark">
@@ -52,9 +52,7 @@ export function HeroEditorialBlock(props: HeroEditorialProps) {
               {headlineAfter ? ` ${headlineAfter}` : null}
             </h1>
 
-            {lede ? (
-              <p className="m-0 max-w-[50ch] text-[18px] leading-[1.55] text-ink-700">{lede}</p>
-            ) : null}
+            {lede ? <p className="lede m-0">{lede}</p> : null}
 
             {actions?.length ? (
               <div className="mt-9 flex flex-wrap items-center gap-3">

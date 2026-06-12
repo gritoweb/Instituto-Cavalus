@@ -17,7 +17,7 @@ export function Brand({ href = '/', onDark = false, className }: BrandProps) {
       href={href}
       aria-label="Instituto Cavalus — página inicial"
       className={cn(
-        'inline-flex items-center gap-3 font-bold tracking-[-0.005em] hover:text-ink-900',
+        'inline-flex items-center gap-3 font-bold hover:text-ink-900',
         textColor,
         className,
       )}
@@ -30,12 +30,12 @@ export function Brand({ href = '/', onDark = false, className }: BrandProps) {
       </span>
       <span
         className={cn(
-          'font-display text-[19px] font-semibold leading-[1.1] tracking-[-0.01em]',
+          'font-display text-lg font-semibold leading-tight tracking-tight',
           textColor,
         )}
       >
         Instituto Cavalus
-        <small className="mt-0.5 block font-body text-[11px] font-medium uppercase tracking-[0.1em] text-ink-500">
+        <small className="mt-0.5 block font-body text-xs font-medium uppercase tracking-widest text-ink-500">
           Educação equestre
         </small>
       </span>

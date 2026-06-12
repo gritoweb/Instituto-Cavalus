@@ -47,36 +47,34 @@ export function CourseCard({ course, hidden }: { course: CourseCardData; hidden?
           {categoryNames.map((name) => (
             <span
               key={name}
-              className="inline-flex items-center rounded-[var(--radius-pill)] bg-brand-tint px-2.5 py-[3px] text-[10px] font-semibold uppercase leading-[1.4] tracking-[0.06em] text-brand-dark"
+              className="inline-flex items-center rounded-[var(--radius-pill)] bg-brand-tint px-2.5 py-[3px] text-xs font-semibold uppercase tracking-wider text-brand-dark"
             >
               {name}
             </span>
           ))}
         </div>
 
-        <h3 className="m-0 font-display text-[18px] font-semibold leading-[1.3] text-ink-900">
-          {title}
-        </h3>
+        <h3 className="text-lg leading-snug">{title}</h3>
 
-        <p className="m-0 text-sm leading-[1.5] text-ink-500">{description}</p>
+        <p className="m-0 text-sm leading-normal text-ink-500">{description}</p>
 
         <hr className="mt-1 border-0 border-t border-ink-300/30" />
 
         <div className="mt-auto flex min-w-0 items-center justify-between gap-2.5">
-          <div className="min-w-0 shrink leading-[1.1]">
+          <div className="min-w-0 shrink leading-none">
             {priceOld ? (
               <span className="mb-0.5 block text-xs font-medium text-ink-500 line-through">
                 {priceOld}
               </span>
             ) : null}
-            <span className="font-display text-[22px] font-bold tabular-nums tracking-[-0.01em] text-brand-green">
-              {priceNow}
+            <span className="font-display text-xl font-bold tabular-nums tracking-tight text-brand-green">
+              R$ {priceNow}
             </span>
           </div>
 
           <a
             href={href}
-            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-md)] bg-brand-green px-3.5 py-[9px] text-[13px] font-semibold text-white no-underline transition-all duration-200 ease-in-out hover:bg-brand-dark hover:text-white"
+            className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[var(--radius-md)] bg-brand-green px-3.5 py-[9px] text-sm font-semibold text-white no-underline transition-all duration-200 ease-in-out hover:bg-brand-dark hover:text-white"
           >
             Comprar curso
             <Icon name="arrow-up-right" size={13} strokeWidth={2.5} />

@@ -29,7 +29,7 @@ function FaqItem({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 pr-2 text-left font-display text-[18px] font-semibold leading-[1.35] text-ink-900 transition-colors duration-200 hover:text-brand-dark"
+        className="flex w-full cursor-pointer items-center justify-between gap-6 py-6 pr-2 text-left font-display text-lg font-semibold leading-snug text-ink-900 transition-colors duration-200 hover:text-brand-dark"
       >
         {question}
         <Icon
@@ -47,7 +47,7 @@ function FaqItem({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="max-w-[64ch] pb-6 pr-2 text-base leading-[1.65] text-ink-700">
+          <div className="max-w-[64ch] pb-6 pr-2 text-base leading-relaxed text-ink-700">
             {answer}
           </div>
         </div>

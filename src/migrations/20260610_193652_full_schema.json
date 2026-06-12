@@ -1410,7 +1410,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'Filtrar por categoria'"
+          "default": "'Filtros'"
         },
         "search_placeholder": {
           "name": "search_placeholder",
@@ -1531,7 +1531,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'Filtrar por categoria'"
+          "default": "'Filtros'"
         },
         "search_placeholder": {
           "name": "search_placeholder",
@@ -3414,7 +3414,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'Filtrar por categoria'"
+          "default": "'Filtros'"
         },
         "search_placeholder": {
           "name": "search_placeholder",
@@ -3542,7 +3542,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'Filtrar por categoria'"
+          "default": "'Filtros'"
         },
         "search_placeholder": {
           "name": "search_placeholder",

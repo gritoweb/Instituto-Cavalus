@@ -37,7 +37,7 @@ export function SearchInput({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="min-w-0 flex-1 border-0 bg-transparent px-2 py-[9px] text-[13px] font-medium text-ink-900 outline-none placeholder:font-medium placeholder:text-ink-500 [&::-webkit-search-cancel-button]:appearance-none"
+        className="min-w-0 flex-1 border-0 bg-transparent px-2 py-[9px] text-sm font-medium text-ink-900 outline-none placeholder:font-medium placeholder:text-ink-500 [&::-webkit-search-cancel-button]:appearance-none"
       />
       <button
         type="button"

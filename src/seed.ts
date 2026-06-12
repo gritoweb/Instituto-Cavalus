@@ -331,7 +331,7 @@ export const seed = async (payload: Payload) => {
           showArt: true,
           floatingCards: heroCards,
         },
-        { blockType: 'coursesCatalog', label: 'Filtrar por categoria', searchPlaceholder: 'Buscar curso por nome ou tema…', coursesLimit: 100 },
+        { blockType: 'coursesCatalog', label: 'Filtros', searchPlaceholder: 'Buscar curso por nome ou tema…', coursesLimit: 100 },
       ],
     },
   })
@@ -363,7 +363,7 @@ export const seed = async (payload: Payload) => {
             subtitle: string
           }[],
         },
-        { blockType: 'articlesArchive', label: 'Filtrar por categoria', searchPlaceholder: 'Buscar artigos por título ou tema…', articlesLimit: 12 },
+        { blockType: 'articlesArchive', label: 'Filtros', searchPlaceholder: 'Buscar artigos por título ou tema…', articlesLimit: 12 },
       ],
     },
   })

@@ -16,7 +16,7 @@ export function FeatureCard({ icon, title, description }: FeatureCardProps) {
         <Icon name={icon} size={26} strokeWidth={1.8} />
       </div>
       <h4 className="mb-2.5">{title}</h4>
-      <p className="m-0 text-[15px] text-ink-700">{description}</p>
+      <p className="m-0 text-sm text-ink-700">{description}</p>
     </div>
   )
 }
