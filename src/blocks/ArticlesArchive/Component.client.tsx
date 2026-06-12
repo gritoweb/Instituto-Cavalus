@@ -78,7 +78,8 @@ export function ArticlesArchiveClient({
             {label}
           </span>
           <span className="text-sm font-medium text-ink-500">
-            <b className="font-semibold text-ink-900">{visibleCount}</b> artigos encontrados
+            <b className="font-semibold text-ink-900">{visibleCount}</b>{' '}
+            {visibleCount === 1 ? 'artigo encontrado' : 'artigos encontrados'}
           </span>
         </div>
 

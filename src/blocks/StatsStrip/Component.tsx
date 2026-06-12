@@ -91,7 +91,7 @@ export function StatsStripBlock({ items }: StatsStripProps) {
       <Container>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
           {items.map((item, i) => (
-            <div key={item.id ?? i} className="flex flex-col gap-1">
+            <div key={item.id ?? i} className="flex flex-col items-center lg:items-start gap-1">
               <span className="font-display text-3xl font-bold leading-none tracking-tight tabular-nums text-ink-900 sm:text-4xl">
                 {item.prefix ? <span className="text-brand-green">{item.prefix}</span> : null}
                 <Counter value={item.value} />

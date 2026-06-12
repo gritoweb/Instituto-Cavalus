@@ -39,7 +39,7 @@ export async function CategoriesExploreBlock(props: CategoriesExploreProps) {
     <section className="py-16 lg:py-24" aria-label={props.title}>
       <Container>
         <SectionHead eyebrow={props.eyebrow} title={props.title} />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid  gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {withIcon.map((cat) => {
             const n = counts.get(cat.id) ?? 0
             return (

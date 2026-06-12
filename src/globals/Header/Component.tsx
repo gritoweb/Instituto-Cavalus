@@ -48,20 +48,22 @@ export function Header({ navItems, cta }: HeaderData) {
           })}
         </nav>
 
-        <Button href={ctaHref} variant="primary" size="sm" className="hidden lg:inline-flex">
-          {ctaLabel}
-        </Button>
+        <div className='flex gap-5'>
+          <Button href={ctaHref} variant="primary" size="sm" className="hidden lg:inline-flex">
+            {ctaLabel}
+          </Button>
 
-        <button
-          type="button"
-          aria-label="Abrir menu"
-          aria-controls="mmenu"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-          className="inline-flex h-11 w-11 items-center justify-center bg-transparent p-2 text-ink-900 lg:hidden"
-        >
-          <Icon name="menu" size={24} strokeWidth={2} />
-        </button>
+          <button
+            type="button"
+            aria-label="Abrir menu"
+            aria-controls="mmenu"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+            className="inline-flex h-11 w-11 items-center justify-center bg-transparent p-2 text-ink-900 lg:hidden"
+          >
+            <Icon name="menu" size={24} strokeWidth={2} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}

@@ -69,7 +69,8 @@ export function CoursesCatalogClient({
             {label}
           </span>
           <span className="text-sm font-medium text-ink-500">
-            <b className="font-semibold text-ink-900">{visibleCount}</b> cursos encontrados
+            <b className="font-semibold text-ink-900">{visibleCount}</b>{' '}
+            {visibleCount === 1 ? 'curso encontrado' : 'cursos encontrados'}
           </span>
         </div>
 
