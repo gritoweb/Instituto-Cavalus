@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     courses: Course;
+    instructors: Instructor;
     articles: Article;
     categories: Category;
     media: Media;
@@ -82,6 +83,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     courses: CoursesSelect<false> | CoursesSelect<true>;
+    instructors: InstructorsSelect<false> | InstructorsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -383,12 +385,7 @@ export interface Course {
     text?: string | null;
     cite?: string | null;
   };
-  instructor?: {
-    initials?: string | null;
-    name?: string | null;
-    role?: string | null;
-    bio?: string | null;
-  };
+  instructors?: (number | Instructor)[] | null;
   priceInstallment?: string | null;
   details?:
     | {
@@ -470,6 +467,18 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instructors".
+ */
+export interface Instructor {
+  id: number;
+  name: string;
+  role?: string | null;
+  bio?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -564,6 +573,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'courses';
         value: number | Course;
+      } | null)
+    | ({
+        relationTo: 'instructors';
+        value: number | Instructor;
       } | null)
     | ({
         relationTo: 'articles';
@@ -852,14 +865,7 @@ export interface CoursesSelect<T extends boolean = true> {
         text?: T;
         cite?: T;
       };
-  instructor?:
-    | T
-    | {
-        initials?: T;
-        name?: T;
-        role?: T;
-        bio?: T;
-      };
+  instructors?: T;
   priceInstallment?: T;
   details?:
     | T
@@ -882,6 +888,17 @@ export interface CoursesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "instructors_select".
+ */
+export interface InstructorsSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  bio?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

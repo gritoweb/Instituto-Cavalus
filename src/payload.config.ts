@@ -15,6 +15,7 @@ import { Media } from './collections/Media'
 import { Categories } from './collections/Categories'
 import { Articles } from './collections/Articles'
 import { Courses } from './collections/Courses'
+import { Instructors } from './collections/Instructors'
 import { Pages } from './collections/Pages'
 import { Header } from './globals/Header/config'
 import { Footer } from './globals/Footer/config'
@@ -57,6 +58,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      providers: ['@/components/admin/BlockScrollProvider#default'],
+    },
     livePreview: {
       collections: ['pages', 'courses'],
       breakpoints: [
@@ -71,7 +75,7 @@ export default buildConfig({
         }),
     },
   },
-  collections: [Pages, Courses, Articles, Categories, Media, Users],
+  collections: [Pages, Courses, Instructors, Articles, Categories, Media, Users],
   globals: [Header, Footer],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
